@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('product_discount_price');
             $table->tinyInteger('status')->default(1);
             $table->string('quantity');
-            $table->string('strock');
+            $table->tinyInteger('strock')->default(1);
             $table->timestamps();
         });
     }

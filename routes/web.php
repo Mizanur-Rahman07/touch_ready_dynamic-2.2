@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\OurTalkController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SectionTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +82,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-ourtalk/{id}',[OurTalkController::class, 'editOurtalk'])->name('edit.ourtalk');
     Route::post('/update-ourtalk',[OurTalkController::class, 'updateOurtalk'])->name('update.ourtalk');
     Route::post('/delete-ourtalk',[OurTalkController::class, 'deleteOurtalk'])->name('delete.ourtalk');
+
+    Route::post('/new-section-type',[SectionTypeController::class, 'saveSectionType'])->name('new.section.type');
+    Route::get('/manage-section-type',[SectionTypeController::class, 'manageSectionType'])->name('manage.section.type');
+    Route::get('/section-type-status/{id}',[SectionTypeController::class, 'sectionTypeStatus'])->name('section.type.status');
+    Route::get('/edit-section-type/{id}',[SectionTypeController::class, 'editSectionType'])->name('edit.section.type');
+    Route::post('/update-section-type',[SectionTypeController::class, 'updateSectionType'])->name('update.section.type');
+    Route::post('/delete-section-type',[SectionTypeController::class, 'deleteSectionType'])->name('delete.section.type');
 
 
 

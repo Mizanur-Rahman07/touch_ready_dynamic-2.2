@@ -159,7 +159,7 @@ Product List
                         <tr class="table-info">
                             <td>{{ $i++ }}</td>
                             <td>{{ $product->product_title}}</td>
-                            <td>{{ $product->product_type }}</td>
+                            <td>{{ $product->section_title }} {{ $product->section_sub_title }}</td>
                             <td>{{ $product->category_title }}</td>
                             <td>{{ $product->author_name }}</td>
                             <td>

@@ -421,6 +421,7 @@ a {
 .auther_box {
   background-color: white;
   box-shadow: 5px 5px 10px 5px #d5d1d1;
+  width: 100%;
 }
 
 #Auther .auther_content .auther_text h5 {

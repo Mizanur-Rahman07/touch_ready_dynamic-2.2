@@ -104,5 +104,17 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings">
+            <i class="ti-settings"></i>  
+              <span class="menu-title">Settings</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="settings">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('manage.section.type')}}">Section Type</a></li>
+              </ul>
+            </div>
+          </li>
     </ul>
 </nav>

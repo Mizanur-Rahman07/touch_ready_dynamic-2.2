@@ -12,7 +12,7 @@ Add Product
         <div class="col-md-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Product Form</h4>
+                    <h4 class="card-title">Add Product</h4>
                     <p class="card-description">
 
                     </p>
@@ -29,13 +29,13 @@ Add Product
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Product Type </label>
                                     <select name="product_type" class="form-control" id="exampleFormControlSelect1">
-                                        <option selected>Choose...</option>
-                                        <option value="1">Product</option>
-                                        <option value="2">Hot Discount Product</option>
-                                        <option value="3">Fasion</option>
-                                        <option value="3">Kids Zone</option>
-                                        <option value="3">Book </option>
+                                        <option selected>Select Type</option>
+                                        @foreach($sectionTypes as $type)
+                                        <option value="{{$type->id}}">{{$type->section_title}}
+                                            {{$type->section_sub_title}}</option>
+                                        @endforeach
                                     </select>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -58,11 +58,10 @@ Add Product
                                     <input type="number" class="form-control" name="product_price"
                                         id="exampleInputEmail1" placeholder="Enter Quantity">
                                 </div>
-                                <div class="form-check form-check-flat form-check-primary">
-                                    <label class="form-check-label">
-                                        <input name="strock" type="checkbox" class="form-check-input">
-                                        Strock
-                                    </label>
+                             
+                                <div class="custom-control custom-switch">
+                                    <input name="strock" value=1 type="checkbox" class="custom-control-input" id="customSwitch1">
+                                    <label class="custom-control-label" for="customSwitch1">Strock</label>
                                 </div>
                             </div>
 
@@ -74,16 +73,21 @@ Add Product
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group ">
                                             <label for="exampleInputEmail1">Category </label>
-                                            <select name="category_id" class="form-control"
-                                                id="exampleFormControlSelect1">
-                                                <option selected>Select Category</option>
-                                                @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->category_title}}</option>
-                                                @endforeach
-                                                
-                                            </select>
+                                            <div class="d-flex justify-content-between">
+                                                <select name="category_id" class="form-control"
+                                                    id="exampleFormControlSelect1">
+                                                    <option selected>Select Category</option>
+                                                    @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->category_title}}
+                                                    </option>
+                                                    @endforeach
+
+                                                </select>
+                                                <a class="fw-bold" href="{{route('add.category')}}">+</a>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
