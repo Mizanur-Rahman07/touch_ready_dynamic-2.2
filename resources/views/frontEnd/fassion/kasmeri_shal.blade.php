@@ -47,25 +47,29 @@ Touch Ready || kasmeriShal
     style="background-image:  url('{{asset('frontEndAsset')}}/assets/images/background_img/Background-Image-1.png');">
       <div class="container">
         <div class="row">
-          <div class="col-md-3 mb-3">
-            <div class="kasmeri_col f_border text-center">
-              <div class="kasmeri_img">
-                <img src="{{asset('frontEndAsset')}}/assets/images/kasmeri-shal/5c9ba30b72d71185b77fb5b0ab7e1243.jpg" alt="" srcset="" />
-              </div>
+        @foreach($kasmeri_shal as $shal)
+                <div class="col-md-3 mb-3">
+                    <div class="kasmeri_col f_border text-center">
+                        <div class="kasmeri_img">
+                        <a href="{{ route('product.details', [$shal->id, $shal->slug])}}"><img src="{{asset($shal->product_image)}}" alt=""
+                                srcset="" /></a>
+                        </div>
 
-              <div class="kasmeri_content">
-                <h2>কাস্মিরী টুর শাল</h2>
-                <span class="ftColor">$৩০০</span>
-                <small><s class="text-secondary">$১৮০</s></small>
-                </h4>
-                <div class="featured_btn">
-                  <a href="" class="btn btn-outline-dark my-3 rounded-pill">
-                    <i class="fas fa-shopping-cart"></i> Add To Cart</a>
+                        <div class="kasmeri_content">
+                        <h2>{{substr($shal->product_title, 0, 40)}}</h2>
+                            <h4>
+                                <span class="ftColor">Tk.{{substr($shal->product_price, 0, 20)}}</span>
+                                <small><s class="text-secondary">{{substr($shal->product_discount_price, 0, 20)}}</s></small>
+                            </h4>
+                            <div class="featured_btn">
+                                <a href="" class="btn btn-outline-dark my-3 rounded-pill">
+                                    <i class="fas fa-shopping-cart"></i> Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
+                @endforeach
+          <!-- <div class="col-md-3 mb-3">
             <div class="kasmeri_col f_border text-center">
               <div class="kasmeri_img">
                 <img src="{{asset('frontEndAsset')}}/assets/images/kasmeri-shal/kashmiri-shawls.jpg" alt="" srcset="" />
@@ -269,7 +273,7 @@ Touch Ready || kasmeriShal
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

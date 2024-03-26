@@ -47,35 +47,39 @@ Touch Ready || Kids Zone
     style="background-image: url('{{asset('frontEndAsset')}}/assets/images/background_img/Background-Image-1.png');">
       <div class="container">
         <div class="row">
-          <div class="col_5_change mb-3">
-            <div class="featured_col f_border text-center">
-              <div class="featured_img">
-                <img src="{{asset('frontEndAsset')}}/assets/images/kids-zone/baby-care/kid-soap.png" alt="" srcset="" />
-              </div>
-              <div class="featured_content">
-                <p class="text-muted mt-4">By.Touch Ready BD</p>
-                <h2>johnsone Soap</h2>
-                <h6 class="featured_icon text-warning">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
-                </h6>
-                <p class="text-muted">Unit : 80gm</p>
-                <h4>
-                  <span class="ftColor">$100</span>
-                  <small><s class="text-secondary">$80</s></small>
-                </h4>
-                <div class="featured_btn">
-                  <a href="" class="btn btn-outline-dark my-3 rounded-pill">
-                    <i class="fas fa-shopping-cart"></i> Add To Cart</a>
+           @foreach($kidzs_zone as $kidz_zone)
+                <div class="col_5_change mb-3">
+                    <div class="featured_col f_border text-center">
+                        <div class="featured_img">
+                        <a href="{{ route('product.details',[$kidz_zone->id,$kidz_zone->slug])}}"><img src="{{asset($kidz_zone->product_image)}}" alt=""
+                                srcset="" /></a>
+                        </div>
+                        <div class="featured_content">
+                        <a href="{{ route('product.details',[$kidz_zone->id,$kidz_zone->slug])}}"> <p class="text-muted mt-4">By.{{substr($kidz_zone->product_sub_title,0,50)}}</p>
+                            <h2>{{substr($kidz_zone->product_title,0,30)}}</h2></a>
+                            <h6 class="featured_icon text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </h6>
+                            <!-- <p class="text-muted">Unit : 80gm</p> -->
+                            <h4>
+                                <span class="ftColor">Tk.{{substr($kidz_zone->product_price,0,20)}}</span>
+                                <small><s class="text-secondary">{{substr($kidz_zone->product_discount_price,0,20)}}</s></small>
+                            </h4>
+                            <p class="ftColor">{{($kidz_zone->strock==1? 'In Strock':'Strock Out')}}</p>
+                            <div class="featured_btn">
+                                <a href="" class="btn btn-outline-dark my-3 rounded-pill">
+                                    <i class="fas fa-shopping-cart"></i> Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+                @endforeach
 
-          <div class="col_5_change mb-3">
+          <!-- <div class="col_5_change mb-3">
             <div class="featured_col f_border text-center">
               <div class="featured_img">
                 <img src="{{asset('frontEndAsset')}}/assets/images/kids-zone/baby-care/kid-lotions-&-creams.png" alt="" srcset="" />
@@ -472,7 +476,7 @@ Touch Ready || Kids Zone
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

@@ -80,8 +80,7 @@
             </a>
             <div class="collapse" id="user">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#"> Add User </a></li>
-                <li class="nav-item"> <a class="nav-link" href="#"> Manage User </a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('manage.user')}}"> Manage User </a></li>
               </ul>
             </div>
           </li>

@@ -4,11 +4,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\OurTalkController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionTypeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,8 +34,18 @@ Route::get('/kids_book', [FrontEndController::class, 'kidsBook'])->name('kids.bo
 Route::get('/kids_zone', [FrontEndController::class, 'kidsZone'])->name('kids.zone');
 Route::get('/kasmeri_shal', [FrontEndController::class, 'kasmeriShal'])->name('kasmeri.shal');
 Route::get('/author', [FrontEndController::class, 'authors'])->name('author');
-Route::get('/user_login', [FrontEndController::class, 'userLogin'])->name('user.login');
-Route::get('/user_registration', [FrontEndController::class, 'userRegistration'])->name('user.registration');
+Route::get('product_details/{id}/{slug?}', [FrontEndController::class, 'productDetails'])->name('product.details');
+
+Route::get('/cart_checkout', [FrontEndController::class, 'cartCheckout'])->name('cart.checkout');
+Route::get('/shopping_cart', [FrontEndController::class, 'shoppingCart'])->name('shopping.cart');
+
+
+Route::get('/user_registration', [CustomerController::class, 'userRegistration'])->name('user.registration');
+Route::post('/new_user_register', [CustomerController::class, 'saveUser'])->name('new.register');
+Route::get('/user_login', [CustomerController::class, 'userLogin'])->name('user.login');
+Route::post('/user_login', [CustomerController::class, 'userLoginCheck'])->name('user.login');
+Route::get('/user_logout', [CustomerController::class, 'userLogout'])->name('user.logout');
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -90,6 +102,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-section-type',[SectionTypeController::class, 'updateSectionType'])->name('update.section.type');
     Route::post('/delete-section-type',[SectionTypeController::class, 'deleteSectionType'])->name('delete.section.type');
 
+    Route::get('/add_user',[UserController::class, 'index'])->name('add.user');
+    Route::post('/new_user',[UserController::class, 'create'])->name('new.user');
+    Route::get('/manage_user',[UserController::class, 'show'])->name('manage.user');
+    Route::get('/user_status/{id}',[UserController::class, 'userStatus'])->name('user.status');
+    Route::get('/edit_user/{id}',[UserController::class, 'editUser'])->name('edit.user');
+    Route::post('/update_user',[UserController::class, 'updateUser'])->name('update.user');
+    Route::post('/delete_user',[UserController::class, 'deleteUser'])->name('delete.user');
 
 
 

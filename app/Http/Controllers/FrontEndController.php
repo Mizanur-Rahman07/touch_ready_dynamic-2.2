@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use DB;
 
 class FrontEndController extends Controller
 {
@@ -16,6 +17,8 @@ class FrontEndController extends Controller
       'authors' => Author::where('status', 1)->orderBy('id', 'desc')->take(2)->get(),
       'islamik_books' => Product::where('product_type', 2)->where('status', 1)->orderBy('id', 'desc')->take(5)->get(),
       'kidzs_islamik_books' => Product::where('product_type', 3)->where('status', 1)->orderBy('id', 'desc')->take(5)->get(),
+      'kidzs_zone' => Product::where('product_type', 4)->where('status', 1)->orderBy('id', 'desc')->take(5)->get(),
+      'kasmeri_shal' => Product::where('product_type', 5)->where('status', 1)->orderBy('id', 'desc')->take(4)->get(),
 
     ]);
   }
@@ -34,18 +37,37 @@ class FrontEndController extends Controller
     ]);
   }
   public function kidsZone() {
-    return view('frontEnd.kids_zone.kids_zone');
+    return view('frontEnd.kids_zone.kids_zone',[
+      'kidzs_zone' => Product::where('product_type', 4)->where('status', 1)->orderBy('id', 'desc')->get(),
+    ]);
   }
   public function kasmeriShal() {
-    return view('frontEnd.fassion.kasmeri_shal');
+    return view('frontEnd.fassion.kasmeri_shal',[
+      'kasmeri_shal' => Product::where('product_type', 5)->where('status', 1)->orderBy('id', 'desc')->get(),
+    ]);
   }
   public function authors() {
     return view('frontEnd.authors.author');
   }
-  public function userLogin() {
-    return view('frontEnd.users.user_login');
+
+  public function productDetails(string $id,string $slug){
+    // return $slug;
+    $product = DB::table('products')
+    ->join('authors', 'products.author_id', 'authors.id')
+    ->select('products.*', 'authors.author_name')
+    ->where('products.id', $id)
+    ->orWhere('products.slug',$slug)
+    ->first();
+// dd($product);
+    return view('frontEnd.products.product_details',[
+      'products' => $product
+    ]);
   }
-  public function userRegistration() {
-    return view('frontEnd.users.user_registration');
+
+  public function cartCheckout(){
+    return view('frontEnd.cart.checkout');
+  }
+  public function shoppingCart(){
+    return view('frontEnd.cart.shoppingCart');
   }
 }

@@ -54,11 +54,38 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link  text-md-left fw-bold" href="#"><i class="fas fa-cart-plus"></i></a>
+                        <a class="nav-link  text-md-left fw-bold" href="{{route('shopping.cart')}}"><i class="fas fa-cart-plus"></i></a>
                     </li>
-                    <li class="nav-item navLogin">
-                        <a class="nav-link  text-md-left fw-bold" href="{{route('user.login')}}">লগ ইন</a>
-                    </li>
+
+<!-- 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            ফ্যাশন
+                        </a>
+                        @if(Session::get('userId'))
+                        <ul class="dropdown-menu sub_menu_hover" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{route('kasmeri.shal')}}">কাস্মিরী শাল</a></li>
+                            <li><a class="dropdown-item" href="#">সৌদিয়ান বোরখা</a></li>
+                        </ul>
+                        @endif
+                    </li> -->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                           Login
+                        </a>
+                    <ul class="dropdown-menu sub_menu_hover" aria-labelledby="navbarDropdownMenuLink">
+                        @if(Session::get('userId'))
+                            <li><a class="nav-link  text-md-left fw-bold" href="">{{ Session::get('userName')}}</a></li>
+                            <li><a class="nav-link  text-md-left fw-bold" href="{{route('user.logout')}}">লগ আউট</a></li>
+                        @else
+                            <li><a class="nav-link  text-md-left fw-bold" href="{{route('user.login')}}">Login/Register</a></li>
+                        @endif
+                    </ul>
+                    </ul>
+                   
                 </ul>
             </div>
         </div>
